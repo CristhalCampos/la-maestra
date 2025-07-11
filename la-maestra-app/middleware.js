@@ -32,7 +32,7 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL('/unauthorize', req.url))
   }
 
-  if (pathname.startsWith('/dashboard') && profile.role !== 'teacher') {
+  if (pathname.startsWith('/dashboard') && profile.role !== 'teacher' || profile.role !== 'admin') {
     return NextResponse.redirect(new URL('/unauthorize', req.url))
   }
 
