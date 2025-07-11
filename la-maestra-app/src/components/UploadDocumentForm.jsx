@@ -91,7 +91,7 @@ export default function UploadDocumentForm() {
       <button
         type="submit"
         disabled={uploading}
-        className="bg-[#F20CA2] text-white px-4 py-2 rounded font-semibold hover:opacity-90"
+        className="bg-[#3730F2] text-white px-4 py-2 rounded font-semibold hover:opacity-90"
       >
         {uploading ? 'Subiendo...' : 'Subir documento'}
       </button>

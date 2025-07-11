@@ -95,7 +95,7 @@ export default function Page() {
         <h1 className="text-2xl font-bold mb-6">Cronograma Semanal</h1>
 
         <table className="min-w-full text-sm border border-gray-300 bg-white">
-          <thead className="bg-[#F2D5F2] text-black">
+          <thead className="bg-[#3730F2] text-white">
             <tr>
               <th className="border px-3 py-2 text-left">Semana</th>
               <th className="border px-3 py-2 text-left">Tema</th>
@@ -135,6 +135,7 @@ export default function Page() {
                   </ul>
                 </td>
                 <td className="border px-3 py-2 text-center space-x-2">
+                  {/* 
                   <Link
                     href={`/view?doc=${week.documents?.url}`}
                     className="bg-[#F2CB05] text-black px-2 py-1 rounded text-xs font-semibold hover:opacity-90"
@@ -149,6 +150,13 @@ export default function Page() {
                   >
                     Descargar
                   </a>
+                  */}
+                  <Link
+                    href={`${SUPABASE_BASE_URL}/${week.documents?.url}`}
+                    className="bg-[#F2CB05] text-black px-2 py-1 rounded text-xs font-semibold hover:opacity-90"
+                  >
+                    Ver y descargar
+                  </Link>
                 </td>
               </tr>
             ))}
