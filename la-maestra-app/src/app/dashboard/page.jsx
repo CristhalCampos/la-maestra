@@ -135,22 +135,6 @@ export default function Page() {
                   </ul>
                 </td>
                 <td className="border px-3 py-2 text-center space-x-2">
-                  {/* 
-                  <Link
-                    href={`/view?doc=${week.documents?.url}`}
-                    className="bg-[#F2CB05] text-black px-2 py-1 rounded text-xs font-semibold hover:opacity-90"
-                  >
-                    Ver
-                  </Link>
-                  <a
-                    href={`${SUPABASE_BASE_URL}/${week.documents?.url}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#F20CA2] text-white px-2 py-1 rounded text-xs font-semibold hover:opacity-90"
-                  >
-                    Descargar
-                  </a>
-                  */}
                   <Link
                     href={`${SUPABASE_BASE_URL}/${week.documents?.url}`}
                     className="bg-[#F2CB05] text-black px-2 py-1 rounded text-xs font-semibold hover:opacity-90"
