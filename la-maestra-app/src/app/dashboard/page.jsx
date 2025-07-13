@@ -9,6 +9,7 @@ const SUPABASE_BASE_URL = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL
 
 export default function Page() {
   const [weeks, setWeeks] = useState([])
+  const [teacherName, setTeacherName] = useState("")
   const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
 
@@ -28,7 +29,7 @@ export default function Page() {
       if (session) {
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
-          .select('role')
+          .select('role, full_name')
           .eq('id', session.user.id)
           .single()
 
@@ -40,6 +41,8 @@ export default function Page() {
         if (profile?.role === 'admin') {
           setIsAdmin(true)
         }
+
+        setTeacherName(profile?.full_name || 'Desconocida')
       }
 
       // Cargar cronograma
@@ -51,7 +54,7 @@ export default function Page() {
             url
           )
         `)
-        .order('week_start', { ascending: true })
+        .order('week_date', { ascending: true })
 
       if (scheduleError) {
         console.error('Error cargando cronograma:', scheduleError)
@@ -92,7 +95,7 @@ export default function Page() {
     <>
       <NavBar />
       <div className="p-6 overflow-x-auto">
-        <h1 className="text-2xl font-bold mb-6">Cronograma Semanal</h1>
+        <h1 className="text-2xl font-bold mb-6">Cronograma 2025 - KIDS</h1>
 
         <table className="min-w-full text-sm border border-gray-300 bg-white">
           <thead className="bg-[#3730F2] text-white">
@@ -106,11 +109,19 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td className="border px-3 py-2 font-semibold">20 de Julio</td>
+              <td className="border px-3 py-2 font-semibold">Día del niño</td>
+              <td className="border px-3 py-2 font-semibold">Todas</td>
+              <td className="border px-3 py-2 font-semibold">Todas</td>
+              <td className="border px-3 py-2 font-semibold">Todas</td>
+              <td className="border px-3 py-2 font-semibold text-center"></td>
+            </tr>
             {weeks.map((week) => (
-              <tr key={week.id} className="border-t hover:bg-[#fafafa]">
+              <tr key={week.id} className={`border-t ${week.plc_friday_names.includes(teacherName) || week.plc_sunday_names.includes(teacherName) || week.lecheria_sunday_names.includes(teacherName) ? 'bg-[#373052] text-white' : 'bg-white'}`}>
                 <td className="border px-3 py-2">
                   {/*new Date(week.week_start).toLocaleDateString()*/}
-                  {week.week_start}
+                  {week.week_label}
                 </td>
                 <td className="border px-3 py-2">{week.topic}</td>
                 <td className="border px-3 py-2">
