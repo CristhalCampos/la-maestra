@@ -52,7 +52,7 @@ export default function Page() {
     e.preventDefault()
 
     const { error } = await supabase.from('schedules').insert({
-      week_start: form.week_start_date,
+      week_date: form.week_start_date,
       topic: form.topic,
       document_id: form.document_id,
       plc_friday_teachers: form.plc_friday_teachers,
